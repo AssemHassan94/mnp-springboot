@@ -1,8 +1,7 @@
 package com.gtss.mnp.utility;
 
-import com.gtss.mnp.enums.Organization;
 
-public class Helper {
+public final class Helper {
     private Helper() {
     }
 

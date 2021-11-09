@@ -1,6 +1,5 @@
 package com.gtss.mnp.entity;
 
-import com.gtss.mnp.dto.OperatorDto;
 import com.gtss.mnp.dto.PortingRequestDto;
 import com.gtss.mnp.enums.RequestStatus;
 import lombok.AllArgsConstructor;

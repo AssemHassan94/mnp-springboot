@@ -20,14 +20,12 @@ public class CustomAuthenticationProcessingFilter extends AbstractAuthentication
     public CustomAuthenticationProcessingFilter(RequestMatcher requiresAuthenticationRequestMatcher,
                                                 AuthenticationManager authenticationManager) {
         super(requiresAuthenticationRequestMatcher);
-        //Set authentication manager
         setAuthenticationManager(authenticationManager);
     }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {         // Extract from request
         String header = request.getHeader("organization");
-        // Create a token object ot pass to Authentication Provider
         PreAuthenticatedAuthenticationToken token = new PreAuthenticatedAuthenticationToken(header, null);
 
         return getAuthenticationManager().authenticate(token);
@@ -36,7 +34,6 @@ public class CustomAuthenticationProcessingFilter extends AbstractAuthentication
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
-        // Save user principle in security context
         SecurityContextHolder.getContext().setAuthentication(authResult);
         chain.doFilter(request, response);
     }

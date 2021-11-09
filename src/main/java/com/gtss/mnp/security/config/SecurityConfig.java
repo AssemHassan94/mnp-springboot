@@ -29,15 +29,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().disable()    //No Http Basic Login
-                .csrf().disable()    //No CSRF token
-                .formLogin().disable()    //No Form Login
-                .logout().disable()    //No Logout
-                //No Session pls
+        http.httpBasic().disable()
+                .csrf().disable()
+                .formLogin().disable()
+                .logout().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authenticationProvider(customAuthenticationProvider)
-                .addFilterBefore(getFilter(), AnonymousAuthenticationFilter.class).authorizeRequests() // Authorize
-                // requests
+                .addFilterBefore(getFilter(), AnonymousAuthenticationFilter.class).authorizeRequests()
                 .requestMatchers(getRequestMatchers()).authenticated();
     }
 

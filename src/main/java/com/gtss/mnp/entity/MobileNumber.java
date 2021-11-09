@@ -22,7 +22,6 @@ public class MobileNumber extends BaseEntity {
     @Setter
     private String rangeHolder;
 
-
     @Column(name = "is_ported")
     @Setter
     private boolean isPorted;

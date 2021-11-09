@@ -17,7 +17,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         if (customToken == null) {
             throw new AccessDeniedException("Please provide organization header");
         }
-        // Custom logic to validate the token
         return getValidationToken(customToken);
     }
 
