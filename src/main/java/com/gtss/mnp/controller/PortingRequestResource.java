@@ -43,8 +43,5 @@ public class PortingRequestResource {
         return portingRequestService.sendPortingRequest(portingRequestDto, currentOperator);
     }
 
-//    @PostMapping("/cancel")
-//    public PortingRequestDto cancelPortingRequest(@Valid @RequestBody PortingRequestDto portingRequestDto, Principal currentOperator) {
-//        return portingRequestService.sendPortingRequest(portingRequestDto, currentOperator);
-//    }
+
 }
