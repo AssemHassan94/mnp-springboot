@@ -1,9 +1,8 @@
-package com.gtss.mnp.ScheduledService;
+package com.gtss.mnp.scheduled;
 
 
 import com.gtss.mnp.service.PortingRequestService;
 import lombok.AllArgsConstructor;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
