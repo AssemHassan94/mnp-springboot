@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 
 @RestController
@@ -22,6 +23,11 @@ public class OperatorResource {
     @GetMapping
     public List<OperatorDto> listOperators() {
         return operatorService.listOperators();
+    }
+
+    @GetMapping("/{operatorId}")
+    public OperatorDto findOperatorByName(@PathVariable UUID operatorId) {
+        return operatorService.findOperatorById(operatorId);
     }
 
     @PostMapping

@@ -2,10 +2,7 @@ package com.gtss.mnp.entity;
 
 import com.gtss.mnp.dto.PortingRequestDto;
 import com.gtss.mnp.enums.RequestStatus;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -31,6 +28,7 @@ public class PortingRequest extends BaseEntity {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
+    @Setter
     private RequestStatus status;
 
     public void update(RequestStatus status) {

@@ -19,8 +19,4 @@ public class OperatorDto {
     @NotEmpty
     @NotNull
     private String numberPrefix;
-
-
-
-
 }

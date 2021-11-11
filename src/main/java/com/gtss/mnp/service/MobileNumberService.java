@@ -65,8 +65,10 @@ public class MobileNumberService {
 
         mobileNumber = MobileNumber.builder()
                 .number(mobileNumberDto.getNumber())
-                .rangeHolder(mobileNumberDto.getRangeHolder())
-                .currentOperator(mobileNumberDto.getCurrentOperator())
+                .rangeHolder(currentOperator)
+                .isPorted(false)
+                .inRequest(false)
+                .currentOperator(operator)
                 .subscriberName(mobileNumberDto.getSubscriberName())
                 .subscriberID(mobileNumberDto.getSubscriberID())
                 .build();
@@ -74,18 +76,16 @@ public class MobileNumberService {
         return mobileNumberRepository.save(mobileNumber).asDTO();
     }
 
-    public MobileNumberDto updateMobileNumber(UUID mobileNumberId, String currentOperator) {
+    public MobileNumberDto updateMobileNumber(UUID mobileNumberId,
+                                              MobileNumberDto mobileNumberDto,
+                                              String currentOperator) {
         MobileNumber mobileNumber = mobileNumberRepository.getById(mobileNumberId);
         Operator operator = operatorRepository.findByOperatorName(currentOperator);
 
-        if (mobileNumber.getCurrentOperator().getOperatorName().equals(currentOperator)) {
+        if (mobileNumber.getCurrentOperator().getOperatorName().equals(operator.getOperatorName())) {
             throw new RuntimeException("Unauthorized Operator");
         }
-        mobileNumber.update(mobileNumber.isPorted(),
-                mobileNumber.isInRequest(),
-                mobileNumber.getSubscriberName(),
-                mobileNumber.getSubscriberID(),
-                mobileNumber.getCurrentOperator());
+        mobileNumber.update(mobileNumberDto.getSubscriberName(), mobileNumberDto.getSubscriberID());
 
         return mobileNumberRepository.save(mobileNumber).asDTO();
     }
@@ -94,10 +94,9 @@ public class MobileNumberService {
         MobileNumber mobileNumber = mobileNumberRepository.getById(mobileNumberId);
         Operator operator = operatorRepository.findByOperatorName(currentOperator);
 
-        if (mobileNumber.getCurrentOperator().getOperatorName().equals(currentOperator)) {
+        if (mobileNumber.getCurrentOperator().getOperatorName().equals(operator.getOperatorName())) {
             throw new RuntimeException("Unauthorized Operator");
         }
-
         mobileNumberRepository.delete(mobileNumber);
     }
 }
