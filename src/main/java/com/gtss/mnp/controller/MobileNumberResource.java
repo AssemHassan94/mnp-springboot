@@ -25,6 +25,15 @@ public class MobileNumberResource {
         return mobileNumberService.listMobileNumbers();
     }
 
+    @GetMapping("/{mobileNumberId}")
+    public MobileNumberDto findNumberById(@PathVariable UUID mobileNumberId) {
+        return mobileNumberService.findMobileNumberById(mobileNumberId);
+    }
+
+    @GetMapping("/number/{mobileNumber}")
+    public MobileNumberDto findNumberByNumber(@PathVariable String mobileNumber) {
+        return mobileNumberService.findByNumber(mobileNumber);
+    }
 
     @PostMapping
     public MobileNumberDto createMobileNumber(@Valid @RequestBody MobileNumberDto mobileNumberDto,
@@ -32,16 +41,15 @@ public class MobileNumberResource {
         return mobileNumberService.createMobileNumber(mobileNumberDto, currentOperator.getName());
     }
 
-
     @PutMapping("/{mobileNumberId}")
     public MobileNumberDto updateMobileNumber(@PathVariable UUID mobileNumberId,
+                                              @Valid @RequestBody MobileNumberDto mobileNumberDto,
                                               Principal currentOperator) {
-        return mobileNumberService.updateMobileNumber(mobileNumberId, currentOperator.getName());
+        return mobileNumberService.updateMobileNumber(mobileNumberId, mobileNumberDto, currentOperator.getName());
     }
 
-
-    @DeleteMapping("/{portingRequestId}")
-    public void deleteMobileNumber(@Valid @RequestBody UUID mobileNumberId,
+    @DeleteMapping("/{mobileNumberId}")
+    public void deleteMobileNumber(@PathVariable UUID mobileNumberId,
                                    Principal currentOperator) {
         mobileNumberService.delete(mobileNumberId, currentOperator.getName());
     }

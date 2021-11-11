@@ -38,10 +38,8 @@ public class PortingRequestResource {
     }
 
     @PutMapping("/reject/{portingRequestId}")
-    public PortingRequestDto rejectPortingRequest(@Valid @RequestBody PortingRequestDto portingRequestDto,
+    public PortingRequestDto rejectPortingRequest(@PathVariable UUID portingRequestId,
                                                   Principal currentOperator) {
-        return portingRequestService.sendPortingRequest(portingRequestDto, currentOperator);
+        return portingRequestService.rejectPortingRequest(portingRequestId, currentOperator);
     }
-
-
 }

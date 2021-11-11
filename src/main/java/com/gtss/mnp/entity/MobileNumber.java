@@ -42,16 +42,10 @@ public class MobileNumber extends BaseEntity {
     @Setter
     private Operator currentOperator;
 
-    public void update(boolean isPorted,
-                       boolean inRequest,
-                       String subscriberName,
-                       String subscriberID,
-                       Operator currentOperator) {
-        this.isPorted = isPorted;
-        this.inRequest = inRequest;
+    public void update(String subscriberName, String subscriberID) {
         this.subscriberName = subscriberName;
         this.subscriberID = subscriberID;
-        this.currentOperator = currentOperator;
+
     }
 
     public MobileNumberDto asDTO() {
@@ -62,7 +56,8 @@ public class MobileNumber extends BaseEntity {
                 inRequest,
                 subscriberName,
                 subscriberID,
-                currentOperator);
+                currentOperator.getOperatorName()
+        );
     }
 
     @Override
